@@ -33,7 +33,7 @@ export default ({
                     let user = res.data.find(user => user.username === this.username && user.password === this.password);
                     if (user) {
                         console.log(`Hello! ${user.username} Welcome!!`);
-                        this.$emit('input', 'dashboard');
+                        this.$emit('cView', 'dashboard');
                     } else {
                         console.log("Invalid user, Please enter right details");
                     }
