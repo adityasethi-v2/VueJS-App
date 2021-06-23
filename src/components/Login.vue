@@ -34,8 +34,8 @@ export default ({
                     let user = res.data.find(user => user.username === this.user.username && user.password === this.user.password);
                     if (user) {
                         console.log(`Hello! ${user.username} Welcome!!`);
-                        this.$router.push('/dashboard');
-                        this.$emit('getUser', this.user);
+                        this.$router.push('/createTask');
+                        this.$emit('get-user', this.user);
                     } else {
                         console.log("Invalid user, Please enter right details");
                     }

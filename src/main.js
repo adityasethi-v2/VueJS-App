@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import Login from './components/Login.vue'
-import Dashboard from './components/Dashboard.vue'
+import CreateTask from './components/CreateTask.vue'
+import ShowTask from './components/ShowTask.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = createRouter({
@@ -17,10 +18,13 @@ const router = createRouter({
             component: Login,
         },
         {
-            path: "/dashboard",
-            component: Dashboard
+            path: "/createTask",
+            component: CreateTask
+        },
+        {
+            path: "/showTask",
+            component: ShowTask
         }
-        
     ]
 })
 
