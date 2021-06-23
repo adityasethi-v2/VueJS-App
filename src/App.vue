@@ -1,18 +1,17 @@
 <template>
-  <login-component v-model="cView" v-if="cView === 'login'"></login-component>
-  <dashboard v-model="cView" v-if="cView === 'dashboard'"></dashboard>
+  <router-view></router-view>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      cView: 'login',
+      user: {}  
     }
   },
   methods: {
-    updateView(view) {
-      this.cView = view;
+    getUser(user) {
+      this.user = user;
     }
   }
 }
