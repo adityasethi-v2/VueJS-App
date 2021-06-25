@@ -2,8 +2,9 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import Login from './components/Login.vue'
-import CreateTask from './components/CreateTask.vue'
-import ShowTask from './components/ShowTask.vue'
+import AllTasks from './components/AllTasks.vue'
+import TaskDetail from './components/TaskDetail.vue'
+import AddTask from './components/AddTask.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = createRouter({
@@ -11,19 +12,23 @@ const router = createRouter({
     routes: [
         {
             path: "",
-            redirect: "/login"
+            redirect: "/tasks"
         },
         {
             path: "/login",
             component: Login,
         },
         {
-            path: "/createTask",
-            component: CreateTask
+            path: "/tasks",
+            component: AllTasks
         },
         {
-            path: "/showTask",
-            component: ShowTask
+            path: "/tasks/:id",
+            component: TaskDetail
+        },
+        {
+            path: "/tasks/add",
+            component: AddTask
         }
     ]
 })

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user && user.username">
+  <!-- <div v-if="user && user.username">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
           <div class="navbar-collapse" id="navbarSupportedContent">
@@ -13,31 +13,52 @@
       </div>
     </nav>
   </div>
-  <router-view @get-user="updateUser"></router-view>
+  <router-view @get-user="updateUser"></router-view> -->
+  <navigation-bar></navigation-bar>
+  <router-view></router-view>
 </template>
 
 <script>
+import NavigationBar from './components/NavigationBar.vue'
+import { ref, provide } from 'vue'
+
 export default {
-  data() {
-    return {
-      user: {},
-      navBarItems: [
-          {
-              title: "Create Task",
-              link: "/createTask"
-          },
-          {
-              title: "Show Task",
-              link: "/showTask"
-          }
-      ],
-      tasks: []
-    }
+  components: {
+    NavigationBar
   },
-  methods: {
-    updateUser(user) {
-      this.user = user;
+  setup() {
+    const tasks = ref([
+      {
+        id: "t1",
+        name: "Task 1",
+        description: "Description about task 1",
+        estimatedTime: "10 Days",
+        priority: "High",
+        assignedTo: "Aditya"
+      },
+      {
+        id: "t2",
+        name: "Task 2",
+        description: "Description about task 2",
+        estimatedTime: "10 Days",
+        priority: "High",
+        assignedTo: "Swapnil"
+      }
+    ])
+
+    function addTask(taskObj) {
+      tasks.value.push(taskObj);
     }
+
+    provide("tasks", tasks);
+    provide("addTask", addTask);
   }
 }
 </script>
+<style>
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px !important;
+}
+</style>

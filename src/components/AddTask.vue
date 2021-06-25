@@ -1,6 +1,6 @@
 <template>
 <div class="createTaskSection">
-    <form class="form-control" @submit.prevent="addTask()">
+    <form class="form-control" @submit.prevent="addTaskData()">
         <div class="mb-3">
             <label for="taskName" class="form-label">Task title</label>
             <input name="taskName" class="form-control" v-model="task.name"/>
@@ -27,28 +27,28 @@
             <input name="assignedTo" class="form-control" v-model="task.assignedTo"/>
         </div>
         <button class="btn btn-primary" type="submit">Create</button>
-        <button class="btn btn-primary btn-danger">Cancel</button>
     </form>
 </div>
 </template>
 
 <script>
+import { inject, reactive } from "vue";
+import { useRouter } from "vue-router";
+
 export default ({
-    data() {
-        return {
-            task: {
-                name: "",
-                description: "",
-                estimatedTime: "",
-                priority: "",
-                assignedTo: ""
-            },
-            tasks: []
+    setup() {
+        const addTask = inject("addTask");
+        const task = reactive({}) 
+        const router = useRouter();
+
+        function addTaskData() {
+            addTask(task)
+            router.push("/tasks")
         }
-    },
-    methods: {
-        addTask() {
-            this.tasks.push(this.task);
+
+        return {
+            addTaskData,
+            task
         }
     }
 })
