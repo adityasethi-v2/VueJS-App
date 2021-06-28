@@ -42,6 +42,7 @@ export default ({
         const router = useRouter();
 
         function addTaskData() {
+            task.id = new Date().getTime().toString();
             addTask(task)
             router.push("/tasks")
         }

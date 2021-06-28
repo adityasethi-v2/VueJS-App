@@ -56,7 +56,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log(to);
     if(to.path !== '/login') {
         if(store.getters.userAuthCheck) {
             next();
