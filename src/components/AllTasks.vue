@@ -15,13 +15,8 @@
 </template>
 
 <script>
-import { inject } from "@vue/runtime-core"
-
 export default ({
-    setup() {
-        const allTasks = inject('tasks');
-        return { "tasks": allTasks }
-    }
+    inject: ['tasks']
 })
 </script>
 <style scoped>

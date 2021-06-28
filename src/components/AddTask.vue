@@ -32,24 +32,19 @@
 </template>
 
 <script>
-import { inject, reactive } from "vue";
-import { useRouter } from "vue-router";
 
 export default ({
-    setup() {
-        const addTask = inject("addTask");
-        const task = reactive({}) 
-        const router = useRouter();
-
-        function addTaskData() {
-            task.id = new Date().getTime().toString();
-            addTask(task)
-            router.push("/tasks")
-        }
-
+    data() {
         return {
-            addTaskData,
-            task
+            task: {}
+        }
+    },
+    inject: ['tasks'],
+    methods: {
+        addTaskData() {
+            this.task.id = new Date().getTime().toString();
+            this.tasks.push(this.task);
+            this.$router.push('/tasks')
         }
     }
 })

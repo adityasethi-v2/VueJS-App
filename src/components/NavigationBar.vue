@@ -13,24 +13,22 @@
 </header>
 </template>
 <script>
-import { useStore } from 'vuex'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
 
 export default ({
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-        
-    function logout () {
-      store.dispatch('setUserData', undefined);
-      store.dispatch('logout');
-      router.push('/login');
-    }
+  data() {
     return {
-      user: computed(() => store.getters.getUser),
-      logout
+      user: {}
     }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('setUserData', undefined);
+      this.$store.dispatch('logout');
+      this.$router.push('/login');
+    }
+  },
+  created() {
+    this.user = this.$store.getters.getUser;
   }
 })
 </script>

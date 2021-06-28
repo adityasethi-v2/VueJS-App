@@ -7,15 +7,16 @@
     <router-link to="/tasks">Go Back to All tasks</router-link>
 </template>
 <script>
-import { inject } from 'vue';
-import { useRoute } from 'vue-router';
 
 export default ({
-    setup() {
-        const allTasks = inject("tasks");
-        const route = useRoute();
-        const task = allTasks.value.find(task => task.id === route.params.id);
-        return { task }
+    data() {
+        return {
+            task: {}
+        }
+    },
+    inject: ['tasks'],
+    created() {
+        this.task = this.tasks.find(task => task.id === this.$route.params.id);
     }
 })
 </script>

@@ -16,58 +16,33 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
 import axios from 'axios';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
 
 export default ({
-    setup() {
-        const user = reactive({
-            username: "",
-            password: ""
-        });
-
-        const router = useRouter();
-        const store = useStore();
-
-        function submit() {
+    data() {
+        return {
+            user: {
+                "username": "",
+                "password": ""
+            }
+        }
+    },
+    methods: {
+        submit() {                        
             axios.get('users.json')
                 .then((res) => {
-                    let userInList = res.data.find(u => u.username === user.username
-                        && u.password === user.password)
-                    if (userInList) {
-                        store.dispatch('setUserData', user);
-                        store.dispatch('login');
-                        router.push('/tasks');
+                    let user = res.data.find(user => user.username === this.user.username && user.password === this.user.password);
+                    if (user) {
+                        console.log(`Hello! ${user.username} Welcome!!`);
+                        this.$store.dispatch('setUserData', user);
+                        this.$store.dispatch('login');
+                        this.$router.push('/tasks');
+                    } else {
+                        console.log("Invalid user, Please enter right details");
                     }
                 })
         }
-
-        return { user, submit}
     }
-    // data() {
-    //     return {
-    //         user: {
-    //             "username": "",
-    //             "password": ""
-    //         }
-    //     }
-    // },
-    // methods: {
-    //     submit() {            
-    //         axios.get('users.json')
-    //             .then((res) => {
-    //                 let user = res.data.find(user => user.username === this.user.username && user.password === this.user.password);
-    //                 if (user) {
-    //                     console.log(`Hello! ${user.username} Welcome!!`);
-    //                     this.$router.push('/tasks');
-    //                 } else {
-    //                     console.log("Invalid user, Please enter right details");
-    //                 }
-    //             })
-    //     }
-    // }
 })
 </script>
 <style>
