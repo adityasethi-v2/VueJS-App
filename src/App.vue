@@ -3,7 +3,7 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script lang="ts">
 import NavigationBar from './components/NavigationBar.vue'
 import { reactive, provide, computed } from 'vue'
 import { useStore } from 'vuex'
@@ -34,7 +34,7 @@ export default {
 
     const store = useStore();
 
-    function addTask(taskObj) {
+    function addTask(taskObj): void {
       tasks.push(taskObj);
     }
 
