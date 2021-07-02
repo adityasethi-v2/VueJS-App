@@ -27,18 +27,18 @@ const store = createStore({
         }
     },
     mutations: {
-        setAuth(state, payload) {
+        setAuth(state: any, payload) {
             state.isLoggedIn = payload;
         },
-        setUser(state, user) {
+        setUser(state: any, user) {
             state.user = user;
         }
     },
     getters: {
-        userAuthCheck(state) {
+        userAuthCheck(state: any) {
             return state.isLoggedIn
         },
-        getUser(state) {
+        getUser(state: any) {
             return state.user;
         }
     }
