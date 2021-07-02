@@ -14,7 +14,7 @@ export default ({
     setup() {
         const allTasks = inject("tasks");
         const route = useRoute();
-        const task = allTasks.value.find(task => task.id === route.params.id);
+        const task = allTasks.find(task => task.id === route.params.id);
         return { task }
     }
 })

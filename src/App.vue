@@ -5,7 +5,7 @@
 
 <script>
 import NavigationBar from './components/NavigationBar.vue'
-import { ref, provide, computed } from 'vue'
+import { reactive, provide, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -13,7 +13,7 @@ export default {
     NavigationBar
   },
   setup() {
-    const tasks = ref([
+    const tasks = reactive([
       {
         id: "t1",
         name: "Task 1",
@@ -35,7 +35,7 @@ export default {
     const store = useStore();
 
     function addTask(taskObj) {
-      tasks.value.push(taskObj);
+      tasks.push(taskObj);
     }
 
     provide("tasks", tasks);
