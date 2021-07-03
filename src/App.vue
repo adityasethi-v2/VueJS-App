@@ -34,7 +34,12 @@ export default {
 
     const store = useStore();
 
-    function addTask(taskObj: any) {
+    function addTask(taskObj: {id: string, 
+      name: string, 
+      description: string, 
+      estimatedTime: string, 
+      assignedTo: string,
+      priority: string}) {
       tasks.push(taskObj);
     }
 
