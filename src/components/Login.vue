@@ -46,28 +46,6 @@ export default ({
 
         return { user, submit}
     }
-    // data() {
-    //     return {
-    //         user: {
-    //             "username": "",
-    //             "password": ""
-    //         }
-    //     }
-    // },
-    // methods: {
-    //     submit() {            
-    //         axios.get('users.json')
-    //             .then((res) => {
-    //                 let user = res.data.find(user => user.username === this.user.username && user.password === this.user.password);
-    //                 if (user) {
-    //                     console.log(`Hello! ${user.username} Welcome!!`);
-    //                     this.$router.push('/tasks');
-    //                 } else {
-    //                     console.log("Invalid user, Please enter right details");
-    //                 }
-    //             })
-    //     }
-    // }
 })
 </script>
 <style>
