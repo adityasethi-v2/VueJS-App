@@ -51,7 +51,7 @@ import { useRouter } from "vue-router";
 
 export default ({
     setup() {
-        const addTask = inject("addTask");
+        const addTask: any = inject("addTask");
         const task = reactive({
             id: '',
             name: '',

@@ -34,7 +34,7 @@ export default {
 
     const store = useStore();
 
-    function addTask(taskObj): void {
+    function addTask(taskObj: any) {
       tasks.push(taskObj);
     }
 
