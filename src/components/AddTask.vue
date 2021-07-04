@@ -146,5 +146,7 @@ export default ({
 })
 </script>
 <style>
-
+.createTaskSection {
+    padding:30px;
+}
 </style>

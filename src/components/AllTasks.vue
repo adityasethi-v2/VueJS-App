@@ -1,16 +1,27 @@
 <template>
     <section>
         <h2> All Tasks </h2>
-        <ul>
-            <li class="jumbotron" v-for="task in tasks" :key="task.id">
-                <h3>Task name: {{task.name}}</h3>
-                <p>Task Description: {{task.description}}</p>
-                <h4>Task assigned to: {{task.assignedTo}}</h4>
-                <h5>Duration of task: {{task.estimatedTime}}</h5>
-                <h5>Task priority: {{task.priority}}</h5>
-                <router-link :to="'/tasks/' + task.id">View Details</router-link>
-            </li>
-        </ul>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Assigned to</th>
+                    <th>Estimated time</th>
+                    <th>Priority</th>
+                    <th>View Details</th>
+                </tr>
+                <tr v-for="task in tasks" :key="task.id">
+                    <td>{{task.name}}</td>
+                    <td>{{task.description}}</td>
+                    <td>{{task.assignedTo}}</td>
+                    <td>{{task.estimatedTime}}</td>
+                    <td>{{task.priority}}</td>
+                    <td><router-link :to="'/tasks/' + task.id">View Details</router-link></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <router-link :to="'/tasks/' + task.id">View Details</router-link> -->
     </section>
 </template>
 
@@ -25,8 +36,15 @@ export default ({
 })
 </script>
 <style scoped>
-li {
-  padding: 25px;
+section {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
-li:nth-child(odd) { background: #eee; }
+table td, table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+table tr:nth-child(odd) { background: #eee; }
 </style>

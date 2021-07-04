@@ -1,22 +1,24 @@
 <template>
     <div class="container">
-        <h1>Welcome to Login</h1>    
-        <form @submit.prevent="submit">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" v-model="user.username"
-                    v-bind:class="{ invalid: !isUsernameValid }">
-                <p class="red-text" v-if="!isUsernameValid">Please enter right username</p>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label" >Password</label>
-                <input type="password" class="form-control" id="password" v-model="user.password"
-                    v-bind:class="{ invalid: !isPasswordValid }">
-                <p class="red-text" v-if="!isPasswordValid">Please makesure this field is not empty</p>
-            </div>
-            <p class="red-text" v-if="!isAuthorize">You are not authorize, Please use right credentials</p>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="login-box">
+            <h1>Welcome to Login</h1>    
+            <form @submit.prevent="submit">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" v-model="user.username"
+                        v-bind:class="{ invalid: !isUsernameValid }">
+                    <p class="red-text" v-if="!isUsernameValid">Please enter right username</p>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" >Password</label>
+                    <input type="password" class="form-control" id="password" v-model="user.password"
+                        v-bind:class="{ invalid: !isPasswordValid }">
+                    <p class="red-text" v-if="!isPasswordValid">Please makesure this field is not empty</p>
+                </div>
+                <p class="red-text" v-if="!isAuthorize">You are not authorize, Please use right credentials</p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -103,5 +105,18 @@ export default defineComponent({
 
 .red-text {
     color: red;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;    
+}
+
+.login-box {
+    border: 1px solid #dddddd;
+    padding: 30px;
+    min-width: 400px;
 }
 </style>
