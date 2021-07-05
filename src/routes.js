@@ -12,7 +12,8 @@ const router = createRouter({
         { path: "/login", component: Login },
         { path: "/tasks", component: AllTasks },
         { path: "/tasks/:id", component: TaskDetail },
-        { path: "/tasks/add", component: AddTask }
+        { path: "/tasks/add", component: AddTask },
+        { path: "/tasks/edit/:id", component: AddTask }
     ]
 })
 

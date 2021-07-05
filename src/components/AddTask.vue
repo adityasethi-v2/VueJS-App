@@ -31,7 +31,10 @@
             <input v-bind:class="{invalid: !isAssignedValid}" name="assignedTo" class="form-control" v-model="task.assignedTo"/>
             <p class="red-text" v-if="!isAssignedValid">Please enter assigned to</p>
         </div>
-        <button class="btn btn-primary" type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">
+            <span v-if="taskId">Edit</span>
+            <span v-else>Create</span>
+        </button>
     </form>
 </div>
 </template>
@@ -47,12 +50,14 @@ interface ValidateTask {
 }
 
 import { inject, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default ({
     setup() {
         const addTask: any = inject("addTask");
-        const task = reactive({
+        let tasks: any = inject("tasks");
+        let taskId: any = ref(undefined);
+        let task = reactive({
             id: '',
             name: '',
             description: '',
@@ -66,7 +71,14 @@ export default ({
         const isEstimatedTimeValid = ref(true);
         const isAssignedValid = ref(true);
         
+        const route = useRoute();
         const router = useRouter();
+
+        taskId.value = route.params.id;
+
+        if (taskId.value) {
+            task = tasks.find((t: any) => t.id === taskId.value)
+        }
 
         function validate(data: ValidateTask) {
             let isValid = true;
@@ -128,7 +140,12 @@ export default ({
                 validate(priorityValidation) &&
                 validate(estimatedTimeValidation) &&
                 validate(assignedToValidation)) {
-                addTask(task);
+                if (!taskId.value) {
+                    addTask(task);
+                } else {
+                    let index = tasks.findIndex((t: any) => t.id === taskId.value);
+                    tasks[index] = task;
+                }
                 router.push("/tasks")
             }
         }
@@ -140,7 +157,8 @@ export default ({
             isDescValid,
             isPriorityValid,
             isEstimatedTimeValid,
-            isAssignedValid
+            isAssignedValid,
+            taskId
         }
     }
 })
