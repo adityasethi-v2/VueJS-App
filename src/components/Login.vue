@@ -7,15 +7,15 @@
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" v-model="user.username"
                         v-bind:class="{ invalid: !isUsernameValid }">
-                    <p class="red-text" v-if="!isUsernameValid">Please enter right username</p>
+                    <p class="red-text shake" v-if="!isUsernameValid">Please enter right username</p>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label" >Password</label>
                     <input type="password" class="form-control" id="password" v-model="user.password"
                         v-bind:class="{ invalid: !isPasswordValid }">
-                    <p class="red-text" v-if="!isPasswordValid">Please makesure this field is not empty</p>
+                    <p class="red-text shake" v-if="!isPasswordValid">Please makesure this field is not empty</p>
                 </div>
-                <p class="red-text" v-if="!isAuthorize">You are not authorize, Please use right credentials</p>
+                <p class="red-text shake" v-if="!isAuthorize">You are not authorize, Please use right credentials</p>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -119,4 +119,35 @@ export default defineComponent({
     padding: 30px;
     min-width: 400px;
 }
+
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 </style>

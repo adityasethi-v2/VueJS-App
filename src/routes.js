@@ -3,7 +3,7 @@ import Login from './components/Login.vue'
 import AllTasks from './components/AllTasks.vue'
 import TaskDetail from './components/TaskDetail.vue'
 import AddTask from './components/AddTask.vue'
-import store from './store.js'
+import store from './stores/index.js'
 
 const router = createRouter({
     history: createWebHistory(),

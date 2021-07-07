@@ -1,6 +1,8 @@
 <template>
   <navigation-bar v-if="isLoggedIn"></navigation-bar>
-  <router-view></router-view>
+  <transition name="fade">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -55,5 +57,15 @@ ul {
   list-style: none;
   margin: 0px;
   padding: 0px !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
